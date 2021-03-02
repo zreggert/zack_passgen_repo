@@ -19,33 +19,43 @@ var symbolsCharCodes = getCharCodesArray(33, 47)
     )));
 
 
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
-  var finalPass = '';
-  var acceptedChar = '';
-
+  var acceptedChar = [];
   var passLength = prompt("Chose between 8 - 128 characters.");
-  console.log(passLength);
-    if (passLength < 8 || passLength > 128) {
-      return "Please choose a number between 8 - 128";
-    } 
+  if (passLength < 8 || passLength > 128) {
+    return "Please choose a number between 8 - 128";
+  } 
   var hasUppercase = confirm('Do you want uppercase letters?');
-  console.log(hasUppercase);
-    if (true) {
-
-    }
+  if (hasUppercase) {
+    acceptedChar = acceptedChar.concat(uppercaseCharCodes);
+  }
   var hasLowercase = confirm('Do you want lowercase letters?');
-  console.log(hasLowercase);
+  if (hasLowercase) {
+    acceptedChar = acceptedChar.concat(lowercaseCharCodes);
+  }
   var hasNum = confirm('Do you want numbers?');
-  console.log(hasNum);
+  if (hasNum) {
+    acceptedChar = acceptedChar.concat(numCharCodes);
+  }
   var hasSymbols = confirm('Do you want symbols?');
-  console.log(hasSymbols);
+  if (hasSymbols) {
+    acceptedChar = acceptedChar.concat(symbolsCharCodes);
+  }
 
-
-  return finalPass;
+  var finalPass = []
+  for (i = 0; i <= passLength; i++){
+    var randChar = acceptedChar[Math.floor(Math.random() * acceptedChar.length)]
+    finalPass.push(String.fromCharCode(randChar))
+  }
+  return finalPass.join('');
 }
+
+
+
 
 // Write password to the #password input
 function writePassword() {
