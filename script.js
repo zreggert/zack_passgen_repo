@@ -29,9 +29,11 @@ var generateBtn = document.querySelector("#generate");
 function generatePassword() {
   var acceptedChar = [];
   var passLength = prompt("Chose between 8 - 128 characters.");
-  if (passLength < 8 || passLength > 128) {
-    return "Please choose a number between 8 - 128";
-  } 
+  if (passLength >= 8 && passLength <= 128) {
+    var numOfChar = passLength;
+  } else {
+    return "Please choose a number between 8 - 128."
+  }
   var hasUppercase = confirm('Do you want uppercase letters?');
   if (hasUppercase) {
     acceptedChar = acceptedChar.concat(uppercaseCharCodes);
@@ -51,7 +53,7 @@ function generatePassword() {
 
   // This last variable is an empty array that is presented as the password. To create this array we use a for loop to loop through the acceptedChar array and randomly selects characters from the array equal to the passLength provided to us by the user.
   var finalPass = []
-  for (i = 0; i <= passLength; i++){
+  for (i = 0; i <= numOfChar; i++){
     var randChar = acceptedChar[Math.floor(Math.random() * acceptedChar.length)]
     // String.fromCharCode is a function that translates the CharCode number into a string of its designated character.
     finalPass.push(String.fromCharCode(randChar))
