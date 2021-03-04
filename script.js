@@ -49,6 +49,10 @@ function generatePassword() {
   var hasSymbols = confirm('Do you want symbols?');
   if (hasSymbols) {
     acceptedChar = acceptedChar.concat(symbolsCharCodes);
+
+  if (hasLowercase === false && hasUppercase === false && hasNum === false && hasSymbols === false) {
+    return 'Please choose at least one set of characters to include in your password.'
+  }
   }
 
   // This last variable is an empty array that is presented as the password. To create this array we use a for loop to loop through the acceptedChar array and randomly selects characters from the array equal to the passLength provided to us by the user.
@@ -58,6 +62,7 @@ function generatePassword() {
     // String.fromCharCode is a function that translates the CharCode number into a string of its designated character.
     finalPass.push(String.fromCharCode(randChar))
   }
+
   return finalPass.join('');
 }
 
@@ -77,31 +82,4 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 
-
-
-// length 8 - 128 characters
-//www.net-comber.com/charset.html
-
-
-//EXPERIMENTED WITH RANDOM GENERATING FUNCTIONS
-// lowercase
-// function getRandLower() {
-//   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-// }
-
-// // uppercase
-// function getRandUpper() {
-//   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-// }
-
-// // numbers
-// function getRandNumber() {
-//   return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-// }
-
-// //special characters
-// function getRandSymbol() {
-//   var symbols = '!@#$%^&*()-={}[]/,.+';
-//   return symbols[Math.floor(Math.random() * symbols.length)];
-// }
 
