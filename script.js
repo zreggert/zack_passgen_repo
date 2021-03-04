@@ -49,11 +49,8 @@ function generatePassword() {
   var hasSymbols = confirm('Do you want symbols?');
   if (hasSymbols) {
     acceptedChar = acceptedChar.concat(symbolsCharCodes);
+  }
 
-  if (hasLowercase === false && hasUppercase === false && hasNum === false && hasSymbols === false) {
-    return 'Please choose at least one set of characters to include in your password.'
-  }
-  }
 
   // This last variable is an empty array that is presented as the password. To create this array we use a for loop to loop through the acceptedChar array and randomly selects characters from the array equal to the passLength provided to us by the user.
   var finalPass = []
@@ -61,6 +58,10 @@ function generatePassword() {
     var randChar = acceptedChar[Math.floor(Math.random() * acceptedChar.length)]
     // String.fromCharCode is a function that translates the CharCode number into a string of its designated character.
     finalPass.push(String.fromCharCode(randChar))
+
+    if (hasLowercase === false && hasUppercase === false && hasNum === false && hasSymbols === false) {
+      return 'Please choose at least one set of characters to include in your password.'
+    }
   }
 
   return finalPass.join('');
